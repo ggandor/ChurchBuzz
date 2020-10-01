@@ -233,11 +233,12 @@
 ;; so-called U combinator:
 (def U (fn [f] (f f)))
 
-;; The first step is that we create a wrapper around our function (`f-maker`),
-;; that takes _itself_ as an argument. This way it can refer to that value at
-;; the point of recursion. With this, we avoid the problem of self-reference -
-;; it's perfectly legal to refer to a bound variable. The question is, how on
-;; Earth will the function get itself passed into itself?
+;; The first step is that we create a wrapper around our function `f`
+;; (`f-maker`), that takes `f` _itself_ as argument, and returns an `f` that
+;; calls that argument value at the point of recursion. With this, we avoid the
+;; problem of self-reference - it's perfectly legal to refer to a bound
+;; variable. The question is, how on Earth will the function get itself passed
+;; into itself?
 
 ;; This is where the Z combinator comes in, that needs this modified function to
 ;; apply its magic on.
